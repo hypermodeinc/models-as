@@ -91,7 +91,7 @@ class ChatCompletionOutput {
 export class ResponseFormat {
   type!: string;
 
-  static Json: ResponseFormat = { type: "json" };
+  static Json: ResponseFormat = { type: "json_object" };
   static Text: ResponseFormat = { type: "text" };
 }
 
