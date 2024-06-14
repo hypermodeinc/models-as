@@ -16,7 +16,7 @@ export interface ModelFactory {
 export abstract class Model<TInput extends object, TOutput extends object> {
   protected constructor(
     public readonly info: ModelInfo,
-    private invoker: ModelInvoker,
+    protected invoker: ModelInvoker,
   ) {}
 
   debug: boolean = false;
