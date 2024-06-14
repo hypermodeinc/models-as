@@ -1,0 +1,39 @@
+{
+  "name": "@hypermode/models-as",
+  "version": "0.1.0",
+  "description": "Hypermode Model Interface Library for AssemblyScript",
+  "author": "Hypermode, Inc.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "pretest": "node ./bin/pretest.js",
+    "test": "asp --verbose",
+    "pretty": "prettier --write .",
+    "pretty:check": "prettier --check .",
+    "lint": "eslint --ext .ts .",
+    "lint:fix": "eslint --ext .ts --fix ."
+  },
+  "dependencies": {
+    "as-container": "^0.8.0",
+    "json-as": "^0.8.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "assemblyscript": "^0.27.27",
+    "assemblyscript-prettier": "^3.0.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.2",
+    "typescript": "^5.4.5",
+    "visitor-as": "^0.11.4"
+  },
+  "overrides": {
+    "assemblyscript": "$assemblyscript"
+  },
+  "files": [
+    "index.ts",
+    "assembly/**/*.ts",
+    "!assembly/**/__tests__"
+  ]
+}
