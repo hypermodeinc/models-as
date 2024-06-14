@@ -1,0 +1,29 @@
+name: ci-as-lint
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+jobs:
+  as-lint:
+    if: github.event_name == 'pull_request'
+    name: Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'src/'
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ">=20"
+      - name: Install dependencies
+        run: npm install
+      - name: Validate code is formatted
+        run: npm run pretty:check
+      - name: Valid code is linted
+        run: npm run lint
