@@ -2,10 +2,7 @@ import { Model } from "../..";
 
 // Reference: https://platform.openai.com/docs/api-reference/embeddings
 
-export default class EmbeddingsModel extends Model<
-  EmbeddingsInput,
-  EmbeddingsOutput
-> {
+export class EmbeddingsModel extends Model<EmbeddingsInput, EmbeddingsOutput> {
   createInput(text: string): EmbeddingsInput {
     const model = this.info.fullName;
     return <EmbeddingsInput>{ model, input: text };

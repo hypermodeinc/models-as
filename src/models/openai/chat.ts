@@ -2,19 +2,16 @@ import { Model } from "../..";
 
 // Reference: https://platform.openai.com/docs/api-reference/chat
 
-export default class ChatCompletionModel extends Model<
-  ChatCompletionInput,
-  ChatCompletionOutput
-> {
-  createInput(messages: Message[]): ChatCompletionInput {
+export class ChatModel extends Model<ChatInput, ChatOutput> {
+  createInput(messages: Message[]): ChatInput {
     const model = this.info.fullName;
-    return <ChatCompletionInput>{ model, messages };
+    return <ChatInput>{ model, messages };
   }
 }
 
 
 @json
-class ChatCompletionInput {
+class ChatInput {
   model!: string;
   messages!: Message[];
 
@@ -99,7 +96,7 @@ class ChatCompletionInput {
 
 
 @json
-class ChatCompletionOutput {
+class ChatOutput {
   id!: string;
   object!: string;
   choices!: Choice[];
