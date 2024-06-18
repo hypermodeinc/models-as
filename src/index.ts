@@ -17,8 +17,6 @@ export abstract class Model<TInput = unknown, TOutput = unknown> {
   static invoker: ModelInvoker | null = null;
   protected constructor(public info: ModelInfo) {}
 
-  foo: string = "bar";
-
   debug: boolean = false;
 
   /**
