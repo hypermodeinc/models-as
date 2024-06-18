@@ -10,10 +10,13 @@ export class ModelInfo {
 }
 
 export interface ModelFactory {
-  getModel<T extends Model<object, object>>(modelName: string): T;
+  getModel<T extends Model>(modelName: string): T;
 }
 
-export abstract class Model<TInput extends object, TOutput extends object> {
+export abstract class Model<
+  TInput extends object = object,
+  TOutput extends object = object,
+> {
   protected constructor(
     public readonly info: ModelInfo,
     protected invoker: ModelInvoker,
