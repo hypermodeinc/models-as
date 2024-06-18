@@ -1,6 +1,6 @@
 {
   "name": "@hypermode/models-as",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Hypermode Model Interface Library for AssemblyScript",
   "author": "Hypermode, Inc.",
   "license": "MIT",

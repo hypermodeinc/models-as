@@ -1,6 +1,9 @@
 import { Model } from "../..";
 
-export default class LlamaModel extends Model<LlamaInput, LlamaOutput> {
+export class TextGenerationModel extends Model<
+  TextGenerationInput,
+  TextGenerationOutput
+> {
   /**
    * Creates a new input object for the model.
    * @param prompt The prompt text to pass to the model.
@@ -8,14 +11,14 @@ export default class LlamaModel extends Model<LlamaInput, LlamaOutput> {
    * @remarks Optional properties may be set on the returned input object to
    * control the behavior of the model.
    */
-  createInput(prompt: string): LlamaInput {
-    return <LlamaInput>{ prompt };
+  createInput(prompt: string): TextGenerationInput {
+    return <TextGenerationInput>{ prompt };
   }
 }
 
 
 @json
-class LlamaInput {
+class TextGenerationInput {
   /**
    * The prompt text to pass to the model.
    * May contain special tokens to control the behavior of the model.
@@ -55,7 +58,7 @@ class LlamaInput {
 
 
 @json
-class LlamaOutput {
+class TextGenerationOutput {
   /**
    * The generated text.
    */
