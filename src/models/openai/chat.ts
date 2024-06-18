@@ -20,53 +20,80 @@ class ChatCompletionInput {
 
 
   @alias("frequency_penalty")
+  @omitif("this.frequencyPenalty == 0.0")
   frequencyPenalty: f64 = 0.0;
 
 
   @alias("logit_bias")
+  @omitnull()
   logitBias: Map<string, f64> | null = null;
 
+
+  @omitif("this.logprobs == false")
   logprobs: bool = false;
 
-  // @alias("top_logprobs")
-  // topLogprobs: i32 = 0;  // TODO: only send when logprobs is true
+
+  @alias("top_logprobs")
+  @omitif("this.logprobs == false")
+  topLogprobs: i32 = 0;
+
 
   @alias("max_tokens")
-  maxTokens: i32 = 4096;
+  @omitif("this.maxTokens == 4096")
+  maxTokens: i32 = 4096; // TODO: make this an `i32 | null` when supported
 
+
+  @omitif("this.n == 1")
   n: i32 = 1;
 
 
   @alias("presence_penalty")
+  @omitif("this.presencePenalty == 0.0")
   presencePenalty: f64 = 0.0;
 
 
   @alias("response_format")
+  @omitif("this.responseFormat.type == 'text'")
   responseFormat: ResponseFormat = ResponseFormat.Text;
 
-  // seed: i32 | null = null; // TODO: we need a true Nullable<i32> type for this to work
+
+  @omitif("this.seed == -1")
+  seed: i32 = -1; // TODO: make this an `i32 | null` when supported
+
+
+  @omitnull()
   stop: string[] | null = null;
 
   // stream: bool = false;
+
+  // @omitif("this.stream == false")
   // @alias("stream_options")
   // streamOptions: StreamOptions | null = null;
 
+  @omitif("this.temperature == 1.0")
   temperature: f64 = 1.0;
 
 
   @alias("top_p")
+  @omitif("this.topP == 1.0")
   topP: f64 = 1.0;
 
+
+  @omitnull()
   tools: Tool[] | null = null;
 
 
   @alias("tool_choice")
+  @omitnull()
   toolChoice: string | null = null; // TODO: verify this works
 
-  // @alias("parallel_tool_calls")
-  // parallelToolCalls: bool = true;  // TODO: omit this when no tools
 
-  @alias("user")
+  @alias("parallel_tool_calls")
+  @omitif("this.parallelToolCalls == true || !this.tools || this.tools!.length == 0")
+  parallelToolCalls: bool = true;
+
+
+  @omitnull()
   user: string | null = null;
 }
 
@@ -98,6 +125,7 @@ export class ResponseFormat {
 // @json
 // export class StreamOptions {
 
+//   @omitif("this.includeUsage == false")
 //   @alias("include_usage")
 //   includeUsage: bool = false;
 // }
@@ -111,8 +139,14 @@ export class Tool {
 
 @json
 export class FunctionDefinition {
-  description: string | null = null;
   name!: string;
+
+
+  @omitnull()
+  description: string | null = null;
+
+
+  @omitnull()
   parameters: string | null = null; // TODO: verify this works
 }
 
@@ -212,6 +246,8 @@ export class SystemMessage extends Message {
     super("system", content);
   }
 
+
+  @omitnull()
   name: string | null = null;
 }
 
@@ -222,6 +258,8 @@ export class UserMessage extends Message {
     super("user", content);
   }
 
+
+  @omitnull()
   name: string | null = null;
 }
 
@@ -232,10 +270,13 @@ export class AssistantMessage extends Message {
     super("assistant", content);
   }
 
+
+  @omitnull()
   name: string | null = null;
 
 
   @alias("tool_calls")
+  @omitif("this.toolCalls.length == 0")
   toolCalls: ToolCall[] = [];
 }
 

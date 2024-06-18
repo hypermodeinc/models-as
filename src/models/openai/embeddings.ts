@@ -1,4 +1,3 @@
-// import { Box } from "as-container/assembly";
 import { Model } from "../..";
 
 // Reference: https://platform.openai.com/docs/api-reference/embeddings
@@ -18,9 +17,18 @@ export default class EmbeddingsModel extends Model<
 class EmbeddingsInput {
   input!: string; // todo: support other types of input (arrays, etc.)
   model!: string;
+
+
+  @omitif("this.encodingFormat.type == 'float'")
   encodingFormat: EncodingFormat = EncodingFormat.Float;
-  // dimensions: Box<i32> | null = null;
-  user: string = "";
+
+
+  @omitif("this.dimensions == -1")
+  dimensions: i32 = -1; // TODO: make this an `i32 | null` when supported
+
+
+  @omitnull()
+  user: string | null = null;
 }
 
 
