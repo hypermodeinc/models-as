@@ -42,6 +42,6 @@ export abstract class Model<TInput extends object, TOutput extends object> {
       console.debug(`Received output: ${outputJson}`);
     }
 
-    return JSON.parse<TOutput>(outputJson, true);
+    return JSON.parse<TOutput>(outputJson);
   }
 }
