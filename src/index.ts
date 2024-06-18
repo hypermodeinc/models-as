@@ -13,14 +13,11 @@ export interface ModelFactory {
   getModel<T extends Model>(modelName: string): T;
 }
 
-export abstract class Model<
-  TInput extends object = object,
-  TOutput extends object = object,
-> {
-  protected constructor(
-    public readonly info: ModelInfo,
-    protected invoker: ModelInvoker,
-  ) {}
+export abstract class Model<TInput = unknown, TOutput = unknown> {
+  static invoker: ModelInvoker | null = null;
+  protected constructor(public info: ModelInfo) {}
+
+  foo: string = "bar";
 
   debug: boolean = false;
 
@@ -30,13 +27,17 @@ export abstract class Model<
    * @returns The output object from the model.
    */
   invoke(input: TInput): TOutput {
+    if (!Model.invoker) {
+      throw new Error("Model invoker is not set.");
+    }
+
     const modelName = this.info.name;
     const inputJson = JSON.stringify(input);
     if (this.debug) {
       console.debug(`Invoking ${modelName} model with input: ${inputJson}`);
     }
 
-    const outputJson = this.invoker(modelName, inputJson);
+    const outputJson = Model.invoker(modelName, inputJson);
     if (!outputJson) {
       throw new Error(`Failed to invoke ${modelName} model.`);
     }
