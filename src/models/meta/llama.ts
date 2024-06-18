@@ -30,6 +30,7 @@ class LlamaInput {
    *
    * Default: 0.6
    */
+  @omitif("this.temperature == 0.6")
   temperature: f64 = 0.6;
 
   /**
@@ -38,6 +39,7 @@ class LlamaInput {
    *
    * Default: 0.9
    */
+  @omitif("this.topP == 0.9")
   @alias("top_p")
   topP: f64 = 0.9;
 
@@ -46,6 +48,7 @@ class LlamaInput {
    *
    * Default: 512
    */
+  @omitif("this.maxGenLen == 512")
   @alias("max_gen_len")
   maxGenLen: i32 = 512;
 }
