@@ -3,16 +3,26 @@ import { Model } from "../..";
 // Reference: https://platform.openai.com/docs/api-reference/embeddings
 
 export class EmbeddingsModel extends Model<EmbeddingsInput, EmbeddingsOutput> {
-  createInput(text: string): EmbeddingsInput {
+  createInput<T>(content: T): EmbeddingsInput {
     const model = this.info.fullName;
-    return <EmbeddingsInput>{ model, input: text };
+
+    if (isString(content)) {
+      const input = content as string;
+      return <EmbeddingsStringInput>{ model, input };
+    }
+
+    if (idof<T>() == idof<string[]>()) {
+      const input = content as string[];
+      return <EmbeddingsStringArrayInput>{ model, input };
+    }
+
+    throw new Error("Content must be a string or an array of strings.");
   }
 }
 
 
 @json
 class EmbeddingsInput {
-  input!: string; // todo: support other types of input (arrays, etc.)
   model!: string;
 
 
@@ -26,6 +36,18 @@ class EmbeddingsInput {
 
   @omitnull()
   user: string | null = null;
+}
+
+
+@json
+class EmbeddingsStringInput extends EmbeddingsInput {
+  input!: string;
+}
+
+
+@json
+class EmbeddingsStringArrayInput extends EmbeddingsInput {
+  input!: string[];
 }
 
 
