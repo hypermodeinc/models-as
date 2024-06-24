@@ -38,10 +38,10 @@ class EmbeddingsInput {
   model!: string;
 
 
-  @omitif("this.encodingFormat.type == 'float'")
-  encodingFormat: EncodingFormat = EncodingFormat.Float;
 
-
+  @alias("encoding_format")
+  @omitif("this.encodingFormat == 'float'")
+  encodingFormat: string = EncodingFormat.Float;
   @omitif("this.dimensions == -1")
   dimensions: i32 = -1; // TODO: make this an `i32 | null` when supported
 
@@ -66,13 +66,12 @@ class EmbeddingsOutput {
 }
 
 
-@json
-export class EncodingFormat {
-  type: string = "float";
-
-  static Float: EncodingFormat = { type: "float" };
-  static Base64: EncodingFormat = { type: "base64" };
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace EncodingFormat {
+  export const Float = "float";
+  export const Base64 = "base64";
 }
+export type EncodingFormat = string;
 
 
 @json
