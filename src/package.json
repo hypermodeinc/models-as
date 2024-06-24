@@ -1,6 +1,6 @@
 {
   "name": "@hypermode/models-as",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Hypermode Model Interface Library for AssemblyScript",
   "author": "Hypermode, Inc.",
   "license": "MIT",
@@ -14,17 +14,17 @@
     "lint:fix": "eslint --ext .ts --fix ."
   },
   "dependencies": {
-    "json-as": "^0.9.6"
+    "json-as": "^0.9.8"
   },
   "devDependencies": {
-    "@types/node": "^20.14.5",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
-    "assemblyscript": "^0.27.27",
+    "@types/node": "^20.14.8",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "assemblyscript": "^0.27.28",
     "assemblyscript-prettier": "^3.0.1",
     "eslint": "^8.57.0",
     "prettier": "^3.3.2",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.2",
     "visitor-as": "^0.11.4"
   },
   "overrides": {
