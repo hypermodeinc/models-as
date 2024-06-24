@@ -78,7 +78,7 @@ export type EncodingFormat = string;
 class Embedding {
   object!: string;
   index!: i32;
-  embedding!: f64[];
+  embedding!: f32[]; // TODO: support `f32[] | string` based on input encoding format
 }
 
 
