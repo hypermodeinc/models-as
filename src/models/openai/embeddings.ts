@@ -6,17 +6,29 @@ export class EmbeddingsModel extends Model<EmbeddingsInput, EmbeddingsOutput> {
   createInput<T>(content: T): EmbeddingsInput {
     const model = this.info.fullName;
 
-    if (isString(content)) {
-      const input = content as string;
-      return <EmbeddingsStringInput>{ model, input };
+    switch (idof<T>()) {
+      case idof<string>():
+      case idof<string[]>():
+      case idof<i64[]>():
+      case idof<i32[]>():
+      case idof<i16[]>():
+      case idof<i8[]>():
+      case idof<u64[]>():
+      case idof<u32[]>():
+      case idof<u16[]>():
+      case idof<u8[]>():
+      case idof<i64[][]>():
+      case idof<i32[][]>():
+      case idof<i16[][]>():
+      case idof<i8[][]>():
+      case idof<u64[][]>():
+      case idof<u32[][]>():
+      case idof<u16[][]>():
+      case idof<u8[][]>():
+        return <TypedEmbeddingsInput<T>>{ model, input: content };
     }
 
-    if (idof<T>() == idof<string[]>()) {
-      const input = content as string[];
-      return <EmbeddingsStringArrayInput>{ model, input };
-    }
-
-    throw new Error("Content must be a string or an array of strings.");
+    throw new Error("Unsupported input content type.");
   }
 }
 
@@ -40,14 +52,8 @@ class EmbeddingsInput {
 
 
 @json
-class EmbeddingsStringInput extends EmbeddingsInput {
-  input!: string;
-}
-
-
-@json
-class EmbeddingsStringArrayInput extends EmbeddingsInput {
-  input!: string[];
+class TypedEmbeddingsInput<T> extends EmbeddingsInput {
+  input!: T;
 }
 
 

@@ -2,7 +2,7 @@
 
 ## UNRELEASED
 
-- Update OpenAI Embeddings model to support string array input
+- Update OpenAI Embeddings model to support all allowed types of input
 
 ## 2024-06-28 - Version 0.1.6
 
