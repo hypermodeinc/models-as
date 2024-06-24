@@ -3,16 +3,38 @@ import { Model } from "../..";
 // Reference: https://platform.openai.com/docs/api-reference/embeddings
 
 export class EmbeddingsModel extends Model<EmbeddingsInput, EmbeddingsOutput> {
-  createInput(text: string): EmbeddingsInput {
+  createInput<T>(content: T): EmbeddingsInput {
     const model = this.info.fullName;
-    return <EmbeddingsInput>{ model, input: text };
+
+    switch (idof<T>()) {
+      case idof<string>():
+      case idof<string[]>():
+      case idof<i64[]>():
+      case idof<i32[]>():
+      case idof<i16[]>():
+      case idof<i8[]>():
+      case idof<u64[]>():
+      case idof<u32[]>():
+      case idof<u16[]>():
+      case idof<u8[]>():
+      case idof<i64[][]>():
+      case idof<i32[][]>():
+      case idof<i16[][]>():
+      case idof<i8[][]>():
+      case idof<u64[][]>():
+      case idof<u32[][]>():
+      case idof<u16[][]>():
+      case idof<u8[][]>():
+        return <TypedEmbeddingsInput<T>>{ model, input: content };
+    }
+
+    throw new Error("Unsupported input content type.");
   }
 }
 
 
 @json
 class EmbeddingsInput {
-  input!: string; // todo: support other types of input (arrays, etc.)
   model!: string;
 
 
@@ -26,6 +48,12 @@ class EmbeddingsInput {
 
   @omitnull()
   user: string | null = null;
+}
+
+
+@json
+class TypedEmbeddingsInput<T> extends EmbeddingsInput {
+  input!: T;
 }
 
 
