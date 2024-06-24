@@ -5,7 +5,10 @@ import { Model } from "../..";
  *
  * Reference: https://platform.openai.com/docs/api-reference/embeddings
  */
-export class EmbeddingsModel extends Model<EmbeddingsInput, EmbeddingsOutput> {
+export class OpenAIEmbeddingsModel extends Model<
+  OpenAIEmbeddingsInput,
+  OpenAIEmbeddingsOutput
+> {
   /**
    * Creates an input object for the OpenAI Embeddings API.
    *
@@ -20,7 +23,7 @@ export class EmbeddingsModel extends Model<EmbeddingsInput, EmbeddingsOutput> {
    * @remarks
    * The input content must not exceed the maximum token limit of the model.
    */
-  createInput<T>(content: T): EmbeddingsInput {
+  createInput<T>(content: T): OpenAIEmbeddingsInput {
     const model = this.info.fullName;
 
     switch (idof<T>()) {
@@ -53,7 +56,7 @@ export class EmbeddingsModel extends Model<EmbeddingsInput, EmbeddingsOutput> {
  * The input object for the OpenAI Embeddings API.
  */
 @json
-class EmbeddingsInput {
+class OpenAIEmbeddingsInput {
   /**
    * The name of the model to use for the embeddings.
    * Must be the exact string expected by the model provider.
@@ -97,7 +100,7 @@ class EmbeddingsInput {
  * The input object for the OpenAI Embeddings API.
  */
 @json
-class TypedEmbeddingsInput<T> extends EmbeddingsInput {
+class TypedEmbeddingsInput<T> extends OpenAIEmbeddingsInput {
   /**
    * The input content to vectorize.
    */
@@ -108,7 +111,7 @@ class TypedEmbeddingsInput<T> extends EmbeddingsInput {
  * The output object for the OpenAI Embeddings API.
  */
 @json
-class EmbeddingsOutput {
+class OpenAIEmbeddingsOutput {
   /**
    * The name of the output object type returned by the API.
    * Always `"list"`.
