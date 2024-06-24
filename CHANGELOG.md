@@ -2,7 +2,8 @@
 
 ## UNRELEASED
 
-- Update OpenAI Embeddings model to support all allowed types of input
+- Update OpenAI Embeddings model to support all allowed types of input [#6](https://github.com/hypermodeAI/models-as/pull/6)
+- More updates for OpenAI Embeddings model [#7](https://github.com/hypermodeAI/models-as/pull/7)
 
 ## 2024-06-28 - Version 0.1.6
 
