@@ -5,16 +5,16 @@ import { Model } from "../..";
  *
  * Reference: https://platform.openai.com/docs/api-reference/chat
  */
-export class ChatModel extends Model<ChatInput, ChatOutput> {
+export class OpenAIChatModel extends Model<OpenAIChatInput, OpenAIChatOutput> {
   /**
    * Creates an input object for the OpenAI Chat API.
    *
    * @param messages: An array of messages to send to the chat model.
    * @returns An input object that can be passed to the `invoke` method.
    */
-  createInput(messages: Message[]): ChatInput {
+  createInput(messages: Message[]): OpenAIChatInput {
     const model = this.info.fullName;
-    return <ChatInput>{ model, messages };
+    return <OpenAIChatInput>{ model, messages };
   }
 }
 
@@ -22,7 +22,7 @@ export class ChatModel extends Model<ChatInput, ChatOutput> {
  * The input object for the OpenAI Chat API.
  */
 @json
-class ChatInput {
+class OpenAIChatInput {
   /**
    * The name of the model to use for the chat.
    * Must be the exact string expected by the model provider.
@@ -234,7 +234,7 @@ export type ServiceTier = string;
  * The output object for the OpenAI Chat API.
  */
 @json
-class ChatOutput {
+class OpenAIChatOutput {
   /**
    * A unique identifier for the chat completion.
    */

@@ -1,5 +1,9 @@
 # Change Log
 
+## UNRELEASED
+
+- Rename classes in OpenAI models [#11](https://github.com/hypermodeAI/models-as/pull/11)
+
 ## 2024-06-24 - Version 0.2.0
 
 - Update OpenAI Embeddings model to support all allowed types of input [#6](https://github.com/hypermodeAI/models-as/pull/6)
