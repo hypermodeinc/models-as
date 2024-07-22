@@ -131,7 +131,7 @@ class AnthropicMessagesInput {
   maxTokens: i32 = 4096;
 
   /**
-   * An object describing metadata about the request.
+   * A `Metadata` object describing the request.
    */
   @omitnull()
   metadata: Metadata | null = null;
@@ -177,6 +177,8 @@ class AnthropicMessagesInput {
 
   /**
    * How the model should use the provided tools.
+   *
+   * Use either `ToolChoiceAuto`, `ToolChoiceAny`, or `ToolChoiceTool(name: string)`.
    */
   @alias("tool_choice")
   @omitnull()
