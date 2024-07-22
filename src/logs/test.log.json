@@ -1,0 +1,42 @@
+[
+  [
+    {
+      "file": "example.spec.ts",
+      "order": 1,
+      "time": {
+        "start": 18.343542,
+        "end": 18.482208
+      },
+      "description": "Example Test",
+      "depth": 0,
+      "suites": [
+        {
+          "file": "example.spec.ts",
+          "order": 1,
+          "time": {
+            "start": 18.48275,
+            "end": 18.611917
+          },
+          "description": "Addition",
+          "depth": 1,
+          "suites": [],
+          "tests": [
+            {
+              "verdict": "ok",
+              "_left": 3,
+              "_right": 3,
+              "_not": false
+            }
+          ],
+          "logs": [],
+          "kind": "test",
+          "verdict": "ok"
+        }
+      ],
+      "tests": [],
+      "logs": [],
+      "kind": "describe",
+      "verdict": "ok"
+    }
+  ]
+]

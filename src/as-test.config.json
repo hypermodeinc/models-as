@@ -1,0 +1,19 @@
+{
+  "input": ["./__tests__/*.spec.ts"],
+  "outDir": "./build",
+  "logs": "./logs",
+  "config": "none",
+  "plugins": {
+    "coverage": true
+  },
+  "buildOptions": {
+    "args": [],
+    "target": "bindings"
+  },
+  "runOptions": {
+    "runtime": {
+      "name": "node",
+      "run": "node ./tests/<name>.run.js"
+    }
+  }
+}
