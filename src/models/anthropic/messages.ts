@@ -255,7 +255,7 @@ export class Tool {
    * will produce.
    */
   @alias("input_schema")
-  inputSchema!: InputSchema;
+  inputSchema: string | null = null; // TODO: fix when https://github.com/JairusSW/as-json/issues/88 is fixed
 }
 
 
@@ -301,22 +301,6 @@ export class ToolChoiceTool extends ToolChoice {
   constructor() {
     super("tool");
   }
-}
-
-
-@json
-class Properties {
-  [key: string]: any;
-}
-
-
-@json
-export class InputSchema {
-  type: string = "object";
-
-
-  @omitnull()
-  properties: Properties | null = null;
 }
 
 /**
