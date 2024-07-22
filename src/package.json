@@ -6,8 +6,6 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "pretest": "node ./bin/pretest.js",
-    "test": "asp --verbose",
     "pretty": "prettier --write .",
     "pretty:check": "prettier --check .",
     "lint": "eslint --ext .ts .",
