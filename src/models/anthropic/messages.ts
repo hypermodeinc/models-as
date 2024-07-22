@@ -1,4 +1,5 @@
 import { Model } from "../..";
+import { JSON } from "json-as";
 
 /**
  * Provides input and output types that conform to the Anthropic Messages API.
@@ -276,8 +277,9 @@ export class Tool {
    * This defines the shape of the `input` that your tool accepts and that the model
    * will produce.
    */
+  @omitnull()
   @alias("input_schema")
-  inputSchema: string | null = null; // TODO: fix when https://github.com/JairusSW/as-json/issues/88 is fixed
+  inputSchema: JSON.Raw | null = null; // TODO: verify this works
 }
 
 
