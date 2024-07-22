@@ -281,11 +281,18 @@ export class Tool {
 
 @json
 class ToolChoice {
-  constructor(type: string) {
+  constructor(type: string, name: string | null = null) {
     this.type = type;
+    this.name = name;
   }
 
   type: string;
+
+  /**
+   * The name of the tool to use.
+   */
+  @omitnull()
+  name: string | null = null;
 }
 
 /**
@@ -301,18 +308,8 @@ export const ToolChoiceAny = new ToolChoice("any");
 /**
  * The model will use the specified tool.
  */
-@json
-export class ToolChoiceTool extends ToolChoice {
-  constructor(name: string) {
-    super("tool");
-    this.name = name;
-  }
-
-  /**
-   * The name of the tool to use.
-   */
-  name: string;
-}
+export const ToolChoiceTool = (name: string): ToolChoice =>
+  new ToolChoice("tool", name);
 
 /**
  * The output object for the Anthropic Messages API.
