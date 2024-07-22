@@ -1,5 +1,9 @@
 # Change Log
 
+## UNRELEASED
+
+- Update dependencies [#20](https://github.com/hypermodeAI/models-as/pull/20)
+
 ## 2024-06-24 - Version 0.2.1
 
 - Rename classes in OpenAI models [#11](https://github.com/hypermodeAI/models-as/pull/11)
