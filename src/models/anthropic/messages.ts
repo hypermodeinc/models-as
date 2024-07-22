@@ -200,10 +200,9 @@ class AnthropicMessagesInput {
    * Recommended for advanced use cases only. You usually only need to use
    * `temperature`.
    */
-  // TODO: decide whether to include this field
-  // @alias("top_k")
-  // @omitnull()
-  // topK: i64 | null = null;
+  @alias("top_k")
+  @omitif("this.topK == -1")
+  topK: i64 = -1; // The default value of top_k is not specified in the API docs
 
   /**
    * Use nucleus sampling.
