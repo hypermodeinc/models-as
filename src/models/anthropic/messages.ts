@@ -390,12 +390,6 @@ export class TextBlock extends ContentBlock {
 
 
 @json
-class ToolUseInput {
-  [key: string]: any;
-}
-
-
-@json
 export class ToolUseBlock extends ContentBlock {
   constructor() {
     super("tool_use");
@@ -403,7 +397,7 @@ export class ToolUseBlock extends ContentBlock {
 
   id!: string;
 
-  input!: ToolUseInput;
+  input!: string; // TODO: verify this works, as it should be an object
 
   name!: string;
 }
