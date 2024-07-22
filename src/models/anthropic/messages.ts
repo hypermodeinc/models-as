@@ -284,17 +284,20 @@ export class Tool {
 @json
 class ToolChoice {
   constructor(type: string, name: string | null = null) {
-    this.type = type;
-    this.name = name;
+    this._type = type;
+    this._name = name;
   }
 
-  type: string;
+
+  @alias("type")
+  protected _type: string;
 
   /**
    * The name of the tool to use.
    */
+  @alias("name")
   @omitnull()
-  name: string | null = null;
+  protected _name: string | null = null;
 }
 
 /**
