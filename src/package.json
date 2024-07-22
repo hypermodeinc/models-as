@@ -14,17 +14,17 @@
     "lint:fix": "eslint --ext .ts --fix ."
   },
   "dependencies": {
-    "json-as": "^0.9.8"
+    "json-as": "^0.9.17"
   },
   "devDependencies": {
-    "@types/node": "^20.14.8",
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.14.1",
-    "assemblyscript": "^0.27.28",
+    "@types/node": "^20.14.11",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.17.0",
+    "assemblyscript": "^0.27.29",
     "assemblyscript-prettier": "^3.0.1",
     "eslint": "^8.57.0",
-    "prettier": "^3.3.2",
-    "typescript": "^5.5.2",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
     "visitor-as": "^0.11.4"
   },
   "overrides": {
