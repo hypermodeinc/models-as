@@ -219,13 +219,18 @@ class AnthropicMessagesInput {
 
 
 @json
-class Metadata {
+export class Metadata {
+  /**
+   * Creates a new metadata object.
+   *
+   * @param userId An external identifier for the user who is associated with the request.
+   */
+  constructor(userId: string) {
+    this.userId = userId;
+  }
+
   /**
    * An external identifier for the user who is associated with the request.
-   *
-   * This should be a uuid, hash value, or other opaque identifier. Anthropic may use
-   * this id to help detect abuse. Do not include any identifying information such as
-   * name, email address, or phone number.
    */
   @alias("user_id")
   userId: string | null = null;
@@ -237,9 +242,25 @@ class Metadata {
 @json
 export class Tool {
   /**
+   * Creates a new tool object.
+   *
+   * @param name Name of the tool.
+   * @param description Description of the tool.
+   * @param inputSchema JSON schema for this tool's input.
+   */
+  constructor(
+    name: string,
+    description: string | null = null,
+    inputSchema: string | null = null,
+  ) {
+    this.name = name;
+    this.description = description;
+    this.inputSchema = inputSchema;
+  }
+  /**
    * Name of the tool.
    */
-  name!: string;
+  name: string;
 
   /**
    * Optional, but strongly-recommended description of the tool.
@@ -259,47 +280,38 @@ export class Tool {
 
 
 @json
-abstract class ToolChoice {
-  type!: string;
-
+class ToolChoice {
   constructor(type: string) {
     this.type = type;
   }
+
+  type: string;
 }
 
 /**
  * The model will automatically decide whether to use tools.
  */
-@json
-export class ToolChoiceAuto extends ToolChoice {
-  constructor() {
-    super("auto");
-  }
-}
+export const ToolChoiceAuto = new ToolChoice("auto");
 
 /**
  * The model will use any available tools.
  */
-@json
-export class ToolChoiceAny extends ToolChoice {
-  constructor() {
-    super("any");
-  }
-}
+export const ToolChoiceAny = new ToolChoice("any");
 
 /**
- * The model will use the specified tool with `tool_choice.name`.
+ * The model will use the specified tool.
  */
 @json
 export class ToolChoiceTool extends ToolChoice {
+  constructor(name: string) {
+    super("tool");
+    this.name = name;
+  }
+
   /**
    * The name of the tool to use.
    */
-  name!: string;
-
-  constructor() {
-    super("tool");
-  }
+  name: string;
 }
 
 /**
