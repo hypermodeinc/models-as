@@ -224,15 +224,6 @@ class AnthropicMessagesInput {
 @json
 export class Metadata {
   /**
-   * Creates a new metadata object.
-   *
-   * @param userId An external identifier for the user who is associated with the request.
-   */
-  constructor(userId: string) {
-    this.userId = userId;
-  }
-
-  /**
    * An external identifier for the user who is associated with the request.
    */
   @alias("user_id")
@@ -245,31 +236,9 @@ export class Metadata {
 @json
 export class Tool {
   /**
-   * Creates a new tool object.
-   *
-   * @param name Name of the tool.
-   * @param description Description of the tool.
-   * @param inputSchema JSON schema for this tool's input.
-   */
-  constructor(
-    name: string,
-    description: string | null = null,
-    inputSchema: string | null = null,
-  ) {
-    this.name = name;
-    this.description = description;
-    this.inputSchema = inputSchema;
-  }
-  /**
    * Name of the tool.
    */
-  name: string;
-
-  /**
-   * Optional, but strongly-recommended description of the tool.
-   */
-  @omitnull()
-  description: string | null = null;
+  name!: string;
 
   /**
    * [JSON schema](https://json-schema.org/) for this tool's input.
@@ -278,8 +247,14 @@ export class Tool {
    * will produce.
    */
   @omitnull()
-  @alias("input_schema")
-  inputSchema: JSON.Raw | null = null; // TODO: verify this works
+  // @alias("input_schema")
+  inputSchema!: JSON.Raw;
+
+  /**
+   * Optional, but strongly-recommended description of the tool.
+   */
+  @omitnull()
+  description: string | null = null;
 }
 
 
@@ -401,7 +376,7 @@ export class ToolUseBlock extends ContentBlock {
 
   id!: string;
 
-  input!: string; // TODO: verify this works, as it should be an object
+  input!: JSON.Raw;
 
   name!: string;
 }
