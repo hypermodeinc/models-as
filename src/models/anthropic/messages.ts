@@ -246,7 +246,6 @@ export class Tool {
    * This defines the shape of the `input` that your tool accepts and that the model
    * will produce.
    */
-  @omitnull()
   @alias("input_schema")
   inputSchema!: JSON.Raw;
 
