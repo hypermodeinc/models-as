@@ -247,7 +247,7 @@ export class Tool {
    * will produce.
    */
   @omitnull()
-  // @alias("input_schema")
+  @alias("input_schema")
   inputSchema!: JSON.Raw;
 
   /**
