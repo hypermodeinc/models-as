@@ -1,8 +1,8 @@
 # Change Log
 
-## UNRELEASED
+## 2024-07-26 - Version 0.2.2
 
-- Update dependencies [#20](https://github.com/hypermodeAI/models-as/pull/20)
+- Add support for Anthropic models [#19](https://github.com/hypermodeAI/models-as/pull/19)
 
 ## 2024-06-24 - Version 0.2.1
 
