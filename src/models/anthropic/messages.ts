@@ -359,8 +359,10 @@ class ContentBlock {
   @omitnull()
   id: string | null = null;
 
+
   @omitnull()
   input: JSON.Raw | null = null;
+
 
   @omitnull()
   name: string | null = null;
