@@ -1,6 +1,6 @@
 {
   "name": "@hypermode/models-as",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Hypermode Model Interface Library for AssemblyScript",
   "author": "Hypermode, Inc.",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "lint:fix": "eslint --ext .ts --fix ."
   },
   "dependencies": {
-    "json-as": "^0.9.19"
+    "json-as": "^0.9.20"
   },
   "devDependencies": {
     "@types/node": "^20.14.12",
