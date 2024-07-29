@@ -16,17 +16,17 @@ export class GeminiGenerateModel extends Model<
    * @param contents The content of the current conversation with the model.
    * @returns An input object that can be passed to the `invoke` method.
    */
-  createInput(contents: Content[]): GeminiGenerateInput {
+  createInput(contents: PromptContent[]): GeminiGenerateInput {
     // for Gemini, the model is part of the URL, not the request body
     return <GeminiGenerateInput>{ contents };
   }
 }
 
 /**
- * Content type for both prompts and response candidates.
+ * Content type for prompts.
  */
 @json
-export class Content {
+export class PromptContent {
   /**
    * Creates a new content object.
    *
@@ -58,11 +58,7 @@ export class Content {
 
 
 @json
-abstract class Part {}
-
-
-@json
-export class TextPart extends Part {
+class Part {
   text!: string;
 }
 
@@ -70,7 +66,7 @@ export class TextPart extends Part {
  * A user content.
  */
 @json
-export class UserContent extends Content {
+export class UserContent extends PromptContent {
   /**
    * Creates a new user content object.
    *
@@ -97,10 +93,25 @@ export class UserTextContent extends UserContent {
 }
 
 /**
+ * A system text content. To be used with {@link GeminiGenerateInput.systemInstruction}
+ */
+@json
+export class SystemTextContent extends PromptContent {
+  /**
+   * Creates a new system text content object.
+   *
+   * @param content The contents of the message.
+   */
+  constructor(content: string) {
+    super("system", [{ text: content }]);
+  }
+}
+
+/**
  * A model content.
  */
 @json
-export class ModelContent extends Content {
+export class ModelContent extends PromptContent {
   /**
    * Creates a new model content object.
    *
@@ -134,18 +145,17 @@ class GeminiGenerateInput {
   /**
    * The content of the current conversation with the model.
    */
-  contents!: Content[];
+  contents!: PromptContent[];
 
   /**
    * Developer set system instruction. Currently, text only.
    */
   @omitnull()
-  systemInstruction: Content | null = null;
+  systemInstruction: PromptContent | null = null;
 
   /**
    * Configuration options for model generation and outputs.
    */
-  @omitnull()
   generationConfig: GenerationConfig | null = null;
 
   /**
@@ -155,36 +165,25 @@ class GeminiGenerateInput {
   safetySettings: SafetySetting[] | null = null;
 
   /**
-   * A list of tools the model may use to generate the next response.
-   */
-  @omitnull()
-  tools: Tool[] | null = null;
-
-  /**
-   * Tool configuration for any Tool specified in the request.
-   */
-  @omitnull()
-  toolConfig: ToolConfig | null = null;
-
-  /**
    * The name of the cached content used as context to serve the prediction.
    */
   @omitnull()
   cachedContent: string | null = null;
+
+  // TODO: support `tools` and `toolConfig` fields
 }
 
 /**
  * The Gemini config options.
  */
 @json
-class GenerationConfig {
+export class GenerationConfig {
   /**
    * Number of generated responses to return.
    * Currently, this value can only be set to 1.
    *
    * @default 1
    */
-  @omitif("this.candidateCount === 1")
   candidateCount: i32 = 1;
 
   /**
@@ -195,29 +194,46 @@ class GenerationConfig {
 
   /**
    * The maximum number of tokens to include in a candidate.
+   *
+   * @remarks
+   * Different model variants may have different maximum token limits.
+   * See the `outputTokenLimit` of the model variant for the exact value.
    */
-  @omitnull()
-  maxOutputTokens: i32 | null = null;
+  @omitif("this.maxOutputTokens == -1")
+  maxOutputTokens: i32 = -1;
 
   /**
    * Controls the randomness of the output.
    *
-   * Values can range from [0.0, 2.0].
+   * Values can range from [0.0, `maxTemperature`], inclusive.
+   *
+   * @remarks
+   * Different models may have different `maxTemperature` and
+   * different defaults as well. See the `temperature` and
+   * `maxTemperature` of the model variant for the exact values.
    */
-  @omitnull()
-  temperature: f64 | null = null;
+  @omitif("this.temperature == -1.0")
+  temperature: f64 = -1.0;
 
   /**
    * The maximum cumulative probability of tokens to consider when sampling.
+   *
+   * @remarks
+   * Different model variants may have different defaults.
+   * See the `topP` of the model variant for the exact value.
    */
-  @omitnull()
-  topP: f64 | null = null;
+  @omitif("this.topP == -1.0")
+  topP: f64 = -1.0;
 
   /**
    * The maximum number of tokens to consider when sampling.
+   *
+   * @remarks
+   * Different model variants may have different defaults.
+   * See the `topK` of the model variant for the exact value.
    */
-  @omitnull()
-  topK: i32 | null = null;
+  @omitif("this.topK == -1")
+  topK: i32 = -1;
 
   /**
    * Output response mimetype of the generated candidate text.
@@ -236,114 +252,6 @@ class GenerationConfig {
   @omitnull()
   responseSchema: JSON.Raw | null = null;
 }
-
-/**
- * Tool details that the model may use to generate response.
- */
-@json
-class Tool {
-  /**
-   * A list of FunctionDeclarations available to the model that can be used for function calling.
-   */
-  @omitnull()
-  functionDeclarations: FunctionDeclarationsTool | null = null;
-
-
-  @omitnull()
-  codeExecution: CodeExecutionTool | null = null;
-}
-
-
-@json
-class FunctionDeclarationsTool {
-  /**
-   * One or more function declarations to be passed
-   * to the model along with the current user query.
-   */
-  @omitnull()
-  functionDeclarations: FunctionDeclaration[] | null = null;
-}
-
-/**
- * Structured representation of a function declaration as defined by the
- * [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3).
- */
-@json
-class FunctionDeclaration {
-  /**
-   * The name of the function to call.
-   */
-  name!: string;
-
-  /**
-   * Description and purpose of the function.
-   */
-  @omitnull()
-  description: string | null = null;
-
-  /**
-   * Describes the parameters to this function in JSON Schema Object
-   * format.
-   */
-  @omitnull()
-  parameters: JSON.Raw | null = null;
-}
-
-/**
- * Enables the model to execute code as part of generation.
- */
-@json
-class CodeExecutionTool {
-  /**
-   * Provide an empty object to enable code execution. This field may have
-   * subfields added in the future.
-   */
-  codeExecution!: {};
-}
-
-/**
- * Tool config. This config is shared for all tools provided in the request.
- */
-@json
-class ToolConfig {
-  functionCallingConfig!: FunctionCallingConfig;
-}
-
-
-@json
-class FunctionCallingConfig {
-
-  @omitnull()
-  mode: FunctionCallingMode | null = null;
-
-
-  @omitnull()
-  allowedFunctionNames: string[] | null = null;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace FunctionCallingMode {
-  /**
-   * Default model behavior, model decides to predict either a function call
-   * or a natural language response.
-   */
-  export const AUTO = "AUTO";
-
-  /**
-   * Model is constrained to always predicting a function call only.
-   * If "allowed_function_names" are set, the predicted function call will be
-   * limited to any one of "allowed_function_names", else the predicted
-   * function call will be any one of the provided "function_declarations".
-   */
-  export const ANY = "ANY";
-
-  /**
-   * Model will not predict any function call. Model behavior is same as when
-   * not passing any function declarations.
-   */
-  export const NONE = "NONE";
-}
-export type FunctionCallingMode = string;
 
 /**
  * Safety setting, affecting the safety-blocking behavior.
@@ -435,7 +343,8 @@ class Candidate {
   /**
    * Generated content returned from the model.
    */
-  content!: Content;
+  @omitnull()
+  content: ResponseContent | null = null;
 
   /**
    * The reason why the model stopped generating tokens.
@@ -454,6 +363,20 @@ class Candidate {
    */
   @omitnull()
   citationMetadata: CitationMetadata | null = null;
+}
+
+/**
+ * Content type for response candidates.
+ */
+@json
+export class ResponseContent {
+  role!: string;
+
+  /**
+   * The multi-part content message.
+   * For now it can only be a text, even though Gemini supports more complex types.
+   */
+  parts!: Part[];
 }
 
 /**
@@ -543,7 +466,7 @@ export type HarmProbability = string;
  * Citation metadata that may be found on a {@link Candidate}.
  */
 @json
-export class CitationMetadata {
+class CitationMetadata {
   citationSources!: CitationSource[];
 }
 
@@ -551,18 +474,18 @@ export class CitationMetadata {
  * A single citation source.
  */
 @json
-export class CitationSource {
+class CitationSource {
   /**
    * Start of segment of the response that is attributed to this source.
    */
   @omitnull()
-  startIndex: i64 | null = null;
+  startIndex!: i64;
 
   /**
    * End of the attributed segment, exclusive.
    */
   @omitnull()
-  endIndex: i64 | null = null;
+  endIndex!: i64;
 
   /**
    * URI that is attributed as a source for a portion of the text.
@@ -582,7 +505,7 @@ export class CitationSource {
  * @public
  */
 @json
-export class PromptFeedback {
+class PromptFeedback {
   blockReason!: BlockReason;
   safetyRatings!: SafetyRating[];
 }
@@ -613,7 +536,7 @@ export type BlockReason = string;
  * Metadata on the generation request's token usage.
  */
 @json
-export class UsageMetadata {
+class UsageMetadata {
   /**
    * Number of tokens in the prompt.
    */
@@ -621,8 +544,11 @@ export class UsageMetadata {
 
   /**
    * Total number of tokens across the generated candidates.
+   *
+   * @remarks
+   * This value will be zero if the prompt was blocked due to safety reasons.
    */
-  candidatesTokenCount!: i32;
+  candidatesTokenCount: i32 = 0; // TODO: make this an `i32 | null` when supported
 
   /**
    * Total token count for the generation request (prompt + candidates).
@@ -632,5 +558,5 @@ export class UsageMetadata {
   /**
    * Total token count in the cached part of the prompt, i.e. in the cached content.
    */
-  cachedContentTokenCount: i32 | null = null;
+  cachedContentTokenCount: i32 = 0; // TODO: make this an `i32 | null` when supported
 }
