@@ -321,6 +321,7 @@ class FunctionCallingConfig {
   allowedFunctionNames: string[] | null = null;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace FunctionCallingMode {
   /**
    * Default model behavior, model decides to predict either a function call
@@ -369,6 +370,7 @@ export type HarmCategory = string;
 /**
  * Threshold above which a prompt or candidate will be blocked.
  */
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace HarmBlockThreshold {
   /**
    * Threshold is unspecified.
@@ -457,6 +459,7 @@ class Candidate {
 /**
  * Reason that a candidate finished.
  */
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace FinishReason {
   /**
    * Default value. This value is unused.
@@ -507,6 +510,7 @@ class SafetyRating {
 /**
  * Probability that a prompt or candidate matches a harm category.
  */
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace HarmProbability {
   /**
    * Probability is unspecified.
@@ -586,6 +590,7 @@ export class PromptFeedback {
 /**
  * Reason that a prompt was blocked.
  */
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace BlockReason {
   /**
    * A blocked reason was not specified.
