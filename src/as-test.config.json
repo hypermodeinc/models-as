@@ -13,7 +13,7 @@
   "runOptions": {
     "runtime": {
       "name": "node",
-      "run": "node ./tests/<name>.run.js"
+      "run": "node ./build/<name>.run.js"
     }
   }
 }
