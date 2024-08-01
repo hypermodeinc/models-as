@@ -6,8 +6,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "pretest": "as-test build",
-    "test": "as-test run",
+    "test": "ast run",
+    "pretest": "ast build && tsc -p ./tests",
     "pretty": "prettier --write .",
     "pretty:check": "prettier --check .",
     "lint": "eslint --ext .ts .",
