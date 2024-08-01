@@ -8,24 +8,25 @@
   "scripts": {
     "test": "ast run",
     "pretest": "ast build && tsc -p ./tests",
+    "lint": "eslint .",
     "pretty": "prettier --write .",
-    "pretty:check": "prettier --check .",
-    "lint": "eslint --ext .ts .",
-    "lint:fix": "eslint --ext .ts --fix ."
+    "pretty:check": "prettier --check ."
   },
   "dependencies": {
     "json-as": "^0.9.20"
   },
   "devDependencies": {
-    "@types/node": "^20.14.12",
-    "@typescript-eslint/eslint-plugin": "^7.17.0",
-    "@typescript-eslint/parser": "^7.17.0",
+    "@types/node": "^20.14.13",
+    "@eslint/js": "^9.8.0",
+    "@types/eslint__js": "^8.42.3",
+    "@typescript-eslint/parser": "^8.0.0",
     "as-test": "^0.3.1",
     "assemblyscript": "^0.27.29",
     "assemblyscript-prettier": "^3.0.1",
-    "eslint": "^8.57.0",
+    "eslint": "^9.8.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
+    "typescript-eslint": "^8.0.0",
     "visitor-as": "^0.11.4"
   },
   "overrides": {
