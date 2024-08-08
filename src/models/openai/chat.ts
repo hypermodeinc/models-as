@@ -361,6 +361,17 @@ export class FunctionDefinition {
   description: string | null = null;
 
   /**
+   * Whether to enable strict schema adherence when generating the function call.
+   * If set to true, the model will follow the exact schema defined in the parameters field.
+   *
+   * See https://openai.com/index/introducing-structured-outputs-in-the-api
+   *
+   * @default false
+   */
+  @omitif("this.strict == false")
+  strict: bool = false;
+
+  /**
    * The parameters the functions accepts, described as a JSON Schema object.
    *
    * See https://platform.openai.com/docs/guides/function-calling
