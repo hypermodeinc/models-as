@@ -390,7 +390,13 @@ export class FunctionDefinition {
    * Whether to enable strict schema adherence when generating the function call.
    * If set to true, the model will follow the exact schema defined in the parameters field.
    *
-   * See https://openai.com/index/introducing-structured-outputs-in-the-api
+   * See https://platform.openai.com/docs/guides/function-calling
+   *
+   * @remarks
+   * In order to guarantee strict schema adherence, disable parallel function calls
+   * by setting {@link OpenAIChatInput.parallelToolCalls}=false.
+   *
+   * See https://platform.openai.com/docs/guides/function-calling/parallel-function-calling-and-structured-outputs
    *
    * @default false
    */
