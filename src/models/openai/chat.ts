@@ -339,7 +339,7 @@ export class Tool {
   /**
    * The definition of the function.
    */
-  function: FunctionDefinition = new FunctionDefinition();
+  function!: FunctionDefinition;
 }
 
 /**
@@ -366,7 +366,7 @@ export class FunctionDefinition {
    * See https://platform.openai.com/docs/guides/function-calling
    */
   @omitnull()
-  parameters: JSON.Raw | null = null; // TODO: verify this works
+  parameters: JSON.Raw | null = null;
 }
 
 /**
