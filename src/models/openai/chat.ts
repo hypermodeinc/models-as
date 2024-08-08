@@ -115,6 +115,9 @@ class OpenAIChatInput {
    *
    * If set to `ResponseFormat.Json`, the response will be a JSON object.
    *
+   * If set to `ResponseFormat.JsonSchema`, the response will be a JSON object
+   * that conforms to the provided JSON schema.
+   *
    * @default ResponseFormat.Text
    */
   @alias("response_format")
@@ -286,6 +289,8 @@ class OpenAIChatOutput {
   usage!: Usage;
 }
 
+type JsonSchemaFunction = (jsonSchema: string) => ResponseFormat;
+
 /**
  * An object specifying the format that the model must output.
  */
@@ -297,6 +302,13 @@ export class ResponseFormat {
   readonly type!: string;
 
   /**
+   * The JSON schema to use for the response format.
+   */
+  @omitnull()
+  @alias("json_schema")
+  readonly jsonSchema: JSON.Raw | null = null;
+
+  /**
    * Instructs the model to output the response as a JSON object.
    *
    * @remarks
@@ -306,6 +318,20 @@ export class ResponseFormat {
    * because the model will not reliably produce arrays directly (ie., there is no `json_array` option).
    */
   static Json: ResponseFormat = { type: "json_object" };
+
+  /**
+   * Enables Structured Outputs which guarantees the model will match your supplied JSON schema.
+   *
+   * See https://platform.openai.com/docs/guides/structured-outputs
+   */
+  static JsonSchema: JsonSchemaFunction = (
+    jsonSchema: string,
+  ): ResponseFormat => {
+    return {
+      type: "json_schema",
+      jsonSchema: jsonSchema,
+    };
+  };
 
   /**
    * Instructs the model to output the response as a plain text string.
