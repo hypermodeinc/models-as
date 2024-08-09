@@ -1,6 +1,6 @@
 {
   "name": "@hypermode/models-as",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Hypermode Model Interface Library for AssemblyScript",
   "author": "Hypermode, Inc.",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@eslint/js": "^9.8.0",
     "@types/eslint__js": "^8.42.3",
     "@typescript-eslint/parser": "^8.0.1",
-    "as-test": "^0.3.1",
+    "as-test": "^0.3.3",
     "assemblyscript": "^0.27.29",
     "assemblyscript-prettier": "^3.0.1",
     "eslint": "^9.8.0",
