@@ -1,5 +1,10 @@
 # Change Log
 
+## 2024-08-09 - Version 0.2.3
+
+- Add support for Gemini models [#24](https://github.com/hypermodeAI/models-as/pull/24)
+- Add support for structured outputs on OpenAI chat [#30](https://github.com/hypermodeAI/models-as/pull/30)
+
 ## 2024-07-26 - Version 0.2.2
 
 - Add support for Anthropic models [#19](https://github.com/hypermodeAI/models-as/pull/19)
