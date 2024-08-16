@@ -16,17 +16,17 @@
     "json-as": "^0.9.21"
   },
   "devDependencies": {
-    "@types/node": "^20.14.14",
-    "@eslint/js": "^9.8.0",
+    "@types/node": "^20.15.0",
+    "@eslint/js": "^9.9.0",
     "@types/eslint__js": "^8.42.3",
-    "@typescript-eslint/parser": "^8.0.1",
-    "as-test": "^0.3.3",
+    "@typescript-eslint/parser": "^8.1.0",
+    "as-test": "^0.3.4",
     "assemblyscript": "^0.27.29",
     "assemblyscript-prettier": "^3.0.1",
-    "eslint": "^9.8.0",
+    "eslint": "^9.9.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.0.1",
+    "typescript-eslint": "^8.1.0",
     "visitor-as": "^0.11.4"
   },
   "overrides": {
