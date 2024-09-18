@@ -56,7 +56,7 @@ export class OpenAIEmbeddingsModel extends Model<
  * The input object for the OpenAI Embeddings API.
  */
 @json
-class OpenAIEmbeddingsInput {
+export class OpenAIEmbeddingsInput {
   /**
    * The name of the model to use for the embeddings.
    * Must be the exact string expected by the model provider.
@@ -100,7 +100,7 @@ class OpenAIEmbeddingsInput {
  * The input object for the OpenAI Embeddings API.
  */
 @json
-class TypedEmbeddingsInput<T> extends OpenAIEmbeddingsInput {
+export class TypedEmbeddingsInput<T> extends OpenAIEmbeddingsInput {
   /**
    * The input content to vectorize.
    */
@@ -111,7 +111,7 @@ class TypedEmbeddingsInput<T> extends OpenAIEmbeddingsInput {
  * The output object for the OpenAI Embeddings API.
  */
 @json
-class OpenAIEmbeddingsOutput {
+export class OpenAIEmbeddingsOutput {
   /**
    * The name of the output object type returned by the API.
    * Always `"list"`.
@@ -160,7 +160,7 @@ export type EncodingFormat = string;
  * The output vector embeddings data.
  */
 @json
-class Embedding {
+export class Embedding {
   /**
    * The name of the output object type returned by the API.
    * Always `"embedding"`.
@@ -172,6 +172,10 @@ class Embedding {
    * Used when requesting embeddings for multiple texts.
    */
   index!: i32;
+
+  /**
+   * The vector embedding of the input text.
+   */
   embedding!: f32[]; // TODO: support `f32[] | string` based on input encoding format
 }
 
@@ -179,7 +183,7 @@ class Embedding {
  * The usage statistics for the request.
  */
 @json
-class Usage {
+export class Usage {
   /**
    * The number of prompt tokens used in the request.
    */

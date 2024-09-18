@@ -23,7 +23,7 @@ export class EmbeddingsModel extends Model<EmbeddingsInput, EmbeddingsOutput> {
  * An input object for the embeddings model.
  */
 @json
-class EmbeddingsInput {
+export class EmbeddingsInput {
   /**
    * A list of one or more text strings to create vector embeddings for.
    */
@@ -34,7 +34,7 @@ class EmbeddingsInput {
  * An output object for the embeddings model.
  */
 @json
-class EmbeddingsOutput {
+export class EmbeddingsOutput {
   /**
    * A list of vector embeddings that correspond to each input text string.
    */

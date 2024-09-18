@@ -92,7 +92,7 @@ export class AssistantMessage extends Message {
  * The input object for the Anthropic Messages API.
  */
 @json
-class AnthropicMessagesInput {
+export class AnthropicMessagesInput {
   /**
    * The model that will complete your prompt.
    * Must be the exact string expected by the model provider.
@@ -258,7 +258,7 @@ export class Tool {
 
 
 @json
-class ToolChoice {
+export class ToolChoice {
   constructor(type: string, name: string | null = null) {
     this._type = type;
     this._name = name;
@@ -296,7 +296,7 @@ export const ToolChoiceTool = (name: string): ToolChoice =>
  * The output object for the Anthropic Messages API.
  */
 @json
-class AnthropicMessagesOutput {
+export class AnthropicMessagesOutput {
   /**
    * Unique object identifier.
    */
@@ -348,7 +348,7 @@ class AnthropicMessagesOutput {
 
 
 @json
-class ContentBlock {
+export class ContentBlock {
   type!: string;
 
   // Text block
@@ -370,7 +370,7 @@ class ContentBlock {
 
 
 @json
-class Usage {
+export class Usage {
   /**
    * The number of input tokens which were used.
    */

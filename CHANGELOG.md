@@ -1,5 +1,9 @@
 # Change Log
 
+## UNRELEASED
+
+- Export all model interfaces classes [#37](https://github.com/hypermodeAI/models-as/pull/37)
+
 ## 2024-08-09 - Version 0.2.3
 
 - Add support for Gemini models [#24](https://github.com/hypermodeAI/models-as/pull/24)
