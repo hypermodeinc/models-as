@@ -317,7 +317,7 @@ export class ResponseFormat {
    * Additionally, if you need an array you must ask for an object that wraps the array,
    * because the model will not reliably produce arrays directly (ie., there is no `json_array` option).
    */
-  static Json: ResponseFormat = { type: "json_object" };
+  static Json: ResponseFormat = { type: "json_object", jsonSchema: null };
 
   /**
    * Enables Structured Outputs which guarantees the model will match your supplied JSON schema.
@@ -339,7 +339,7 @@ export class ResponseFormat {
    * @remarks
    * This is the default response format.
    */
-  static Text: ResponseFormat = { type: "text" };
+  static Text: ResponseFormat = { type: "text", jsonSchema: null };
 }
 
 // @json
