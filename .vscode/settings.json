@@ -16,5 +16,21 @@
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "cSpell.words": [
+    "assemblyscript",
+    "CODEOWNERS",
+    "hypermode",
+    "idof",
+    "logit",
+    "logits",
+    "logprob",
+    "logprobs",
+    "npmjs",
+    "omitif",
+    "omitnull",
+    "tseslint",
+    "uncategorized",
+    "vectorize"
+  ]
 }
