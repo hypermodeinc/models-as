@@ -18,7 +18,7 @@ export class TextGenerationModel extends Model<
 
 
 @json
-class TextGenerationInput {
+export class TextGenerationInput {
   /**
    * The prompt text to pass to the model.
    * May contain special tokens to control the behavior of the model.
@@ -58,7 +58,7 @@ class TextGenerationInput {
 
 
 @json
-class TextGenerationOutput {
+export class TextGenerationOutput {
   /**
    * The generated text.
    */

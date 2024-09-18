@@ -58,7 +58,7 @@ export class PromptContent {
 
 
 @json
-class Part {
+export class Part {
   text!: string;
 }
 
@@ -141,7 +141,7 @@ export class ModelTextContent extends ModelContent {
  * The input object for the Gemini Generate Content API.
  */
 @json
-class GeminiGenerateInput {
+export class GeminiGenerateInput {
   /**
    * The content of the current conversation with the model.
    */
@@ -257,7 +257,7 @@ export class GenerationConfig {
  * Safety setting, affecting the safety-blocking behavior.
  */
 @json
-class SafetySetting {
+export class SafetySetting {
   category!: HarmCategory;
   threshold!: HarmBlockThreshold;
 }
@@ -312,7 +312,7 @@ export type HarmBlockThreshold = string;
  * The output object for the Gemini Generate Content API.
  */
 @json
-class GeminiGenerateOutput {
+export class GeminiGenerateOutput {
   /**
    * Candidate responses from the model.
    */
@@ -334,7 +334,7 @@ class GeminiGenerateOutput {
  *
  */
 @json
-class Candidate {
+export class Candidate {
   /**
    * Index of the candidate in the list of candidates.
    */
@@ -425,7 +425,7 @@ export type FinishReason = string;
  * Safety setting, affecting the safety-blocking behavior.
  */
 @json
-class SafetyRating {
+export class SafetyRating {
   category!: HarmCategory;
   probability!: HarmProbability;
 }
@@ -466,7 +466,7 @@ export type HarmProbability = string;
  * Citation metadata that may be found on a {@link Candidate}.
  */
 @json
-class CitationMetadata {
+export class CitationMetadata {
   citationSources!: CitationSource[];
 }
 
@@ -474,7 +474,7 @@ class CitationMetadata {
  * A single citation source.
  */
 @json
-class CitationSource {
+export class CitationSource {
   /**
    * Start of segment of the response that is attributed to this source.
    */
@@ -505,7 +505,7 @@ class CitationSource {
  * @public
  */
 @json
-class PromptFeedback {
+export class PromptFeedback {
   blockReason!: BlockReason;
   safetyRatings!: SafetyRating[];
 }
@@ -536,7 +536,7 @@ export type BlockReason = string;
  * Metadata on the generation request's token usage.
  */
 @json
-class UsageMetadata {
+export class UsageMetadata {
   /**
    * Number of tokens in the prompt.
    */

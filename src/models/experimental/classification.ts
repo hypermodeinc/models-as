@@ -26,7 +26,7 @@ export class ClassificationModel extends Model<
  * An input object for the classification model.
  */
 @json
-class ClassificationInput {
+export class ClassificationInput {
   /**
    * A list of one or more text strings of text to classify.
    */
@@ -37,7 +37,7 @@ class ClassificationInput {
  * An output object for the classification model.
  */
 @json
-class ClassificationOutput {
+export class ClassificationOutput {
   /**
    * A list of prediction results that correspond to each input text string.
    */
@@ -69,7 +69,7 @@ export class ClassifierResult {
  * A classification label with its corresponding probability.
  */
 @json
-class ClassifierLabel {
+export class ClassifierLabel {
   /**
    * The classification label.
    */
