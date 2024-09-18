@@ -1,6 +1,6 @@
 # Change Log
 
-## UNRELEASED
+## 2024-09-17 - Version 0.2.4
 
 - Export all model interfaces classes [#37](https://github.com/hypermodeAI/models-as/pull/37)
 
