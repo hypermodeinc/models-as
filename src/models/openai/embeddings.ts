@@ -172,6 +172,10 @@ class Embedding {
    * Used when requesting embeddings for multiple texts.
    */
   index!: i32;
+
+  /**
+   * The vector embedding of the input text.
+   */
   embedding!: f32[]; // TODO: support `f32[] | string` based on input encoding format
 }
 
