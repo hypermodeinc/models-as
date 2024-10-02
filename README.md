@@ -12,3 +12,16 @@ Functions written in [AssemblyScript](https://www.assemblyscript.org/).
 
 Please visit [docs.hypermode.com](https://docs.hypermode.com/) for detailed docs
 covering the Hypermode platform, including this library.
+
+## Pre-defined Model Interfaces
+
+Modus's Model SDK can integrate with most models. However, for commonly used models, we've created pre-defined implementations. This list will grow over time. You can create custom classes for any model you like, by extending from the base Model class.
+
+- [Anthropic](https://docs.anthropic.com/en/home)
+  -[Messages](https://docs.anthropic.com/en/api/messages)
+- [Gemini](https://ai.google.dev/gemini-api/docs)
+  -[Generate](https://ai.google.dev/api/generate-content)
+- [Meta's Llama Models](https://www.llama.com/docs/overview/)
+- [OpenAI](https://platform.openai.com/docs/)
+  - [Chat API](https://platform.openai.com/docs/api-reference/chat)
+  - [Embeddings API](https://platform.openai.com/docs/api-reference/embeddings)
