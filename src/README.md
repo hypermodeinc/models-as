@@ -5,4 +5,4 @@
 This package contains a shared library used by Hypermode Functions written in AssemblyScript.
 It provides class definitions for models, model inputs, and model outputs.
 
-For further details, refer to https://github.com/hypermodeAI/models-as.
+For further details, refer to https://github.com/hypermodeinc/models-as.
